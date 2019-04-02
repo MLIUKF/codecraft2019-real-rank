@@ -52,6 +52,7 @@ while True:
     if runOverTime == 10:
         runOverTime = 0
         with open('rank.txt','w') as teamInfoFile:
+            teamInfoFile.write(time.ctime()+'\n')
             teamInfoFile.write('Rank Schedule Time  All Schedule Time Run Time       Team Name and SchoolName\n')
             for i in range(8):
                 zone = zoneList[i]
