@@ -51,9 +51,9 @@ while True:
     #更新排名
     if runOverTime == 10:
         runOverTime = 0
-        with open('rank.txt','w') as teamInfoFile:
-            teamInfoFile.write(time.ctime()+'\n')
-            teamInfoFile.write('Rank Schedule Time  All Schedule Time Run Time       Team Name and SchoolName\n')
+        with open('rank.txt','w') as rankFile:
+            rankFile.write(time.ctime()+'\n')
+            rankFile.write('Rank Schedule Time  All Schedule Time Run Time       Team Name and SchoolName\n')
             for i in range(8):
                 zone = zoneList[i]
                 rankList = []
@@ -61,14 +61,14 @@ while True:
                     team = teamInfo[zone][teamKey]
                     rankList.append((int(team['finalScheduleTimeScore']),teamKey))
                 rankList.sort()
-                teamInfoFile.write(zone+'\n')
+                rankFile.write(zone+'\n')
                 for rankNo,teamTuple in enumerate(rankList):
-                    teamInfoFile.write(str(rankNo+1).ljust(5,' '))
-                    teamInfoFile.write(str(teamTuple[0]).ljust(15,' '))
-                    teamInfoFile.write(teamInfo[zone][teamTuple[1]]['finalAllScheduleScore'].ljust(18,' '))
-                    teamInfoFile.write(teamInfo[zone][teamTuple[1]]['finalRunTimeScore'].ljust(15,' '))
-                    teamInfoFile.write(teamTuple[1]+'    ')
-                    teamInfoFile.write(teamInfo[zone][teamTuple[1]]['schoolName'])
-                    teamInfoFile.write('\n')
-                teamInfoFile.write('\n')
+                    rankFile.write(str(rankNo+1).ljust(5,' '))
+                    rankFile.write(str(teamTuple[0]).ljust(15,' '))
+                    rankFile.write(teamInfo[zone][teamTuple[1]]['finalAllScheduleScore'].ljust(18,' '))
+                    rankFile.write(teamInfo[zone][teamTuple[1]]['finalRunTimeScore'].ljust(15,' '))
+                    rankFile.write(teamTuple[1]+'    ')
+                    rankFile.write(teamInfo[zone][teamTuple[1]]['schoolName'])
+                    rankFile.write('\n')
+                rankFile.write('\n')
     time.sleep(60)
